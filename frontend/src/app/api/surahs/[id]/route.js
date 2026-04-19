@@ -40,7 +40,30 @@ export async function GET(request, { params }) {
       )
       .all(surahId);
 
-    return NextResponse.json({ success: true, data: { ...surah, ayahs } });
+    // Strip Bismillah from the first ayah of surahs (except Surah 1 and 9)
+    // The Bismillah is redundantly displayed because the header already shows it.
+    const cleanedAyahs = ayahs.map((ayah) => {
+      if (surahId !== 1 && surahId !== 9 && ayah.ayah_number === 1) {
+        // Common Bismillah prefix variations
+        const bismillahPrefix = "بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ";
+        const bismillahPrefixAlt = "بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ";
+        
+        if (ayah.arabic_text.startsWith(bismillahPrefix)) {
+          return {
+            ...ayah,
+            arabic_text: ayah.arabic_text.replace(bismillahPrefix, '').trim()
+          };
+        } else if (ayah.arabic_text.startsWith(bismillahPrefixAlt)) {
+          return {
+            ...ayah,
+            arabic_text: ayah.arabic_text.replace(bismillahPrefixAlt, '').trim()
+          };
+        }
+      }
+      return ayah;
+    });
+
+    return NextResponse.json({ success: true, data: { ...surah, ayahs: cleanedAyahs } });
   } catch (error) {
     console.error('API Error (surah id):', error);
     return NextResponse.json(
