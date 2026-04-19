@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Next.js build output
+.next/
+frontend/.next/
+
+# SQLite database files
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Preview images (as requested)
+previews/

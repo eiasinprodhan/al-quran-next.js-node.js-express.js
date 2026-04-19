@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-stone-50 text-stone-900 antialiased;
+    font-family: "Inter", sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-stone-100;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-stone-300 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-stone-400;
+  }
+}
+
+@layer components {
+  .font-arabic-amiri {
+    font-family: "Amiri", serif;
+  }
+  .font-arabic-scheherazade {
+    font-family: "Scheherazade New", serif;
+  }
+  .font-arabic-noto {
+    font-family: "Noto Naskh Arabic", serif;
+  }
+
+  .card {
+    @apply bg-white border border-stone-200 rounded-2xl shadow-sm;
+  }
+
+  .gold-divider {
+    @apply flex items-center gap-3 my-4;
+  }
+  .gold-divider::before,
+  .gold-divider::after {
+    content: "";
+    @apply flex-1 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent;
+  }
+}
