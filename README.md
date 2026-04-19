@@ -2,6 +2,20 @@
 
 A modern, high-performance Quran application built with **Next.js 14**, **Node.js/Express**, and **SQLite**. This project provides a clean interface to read the Holy Quran, search for ayahs, and learn about different Surahs.
 
+---
+
+## 📸 Screenshots
+
+<div align="center">
+  <img src="previews/1.png" width="400" alt="Preview 1" />
+  <img src="previews/2.png" width="400" alt="Preview 2" />
+  <img src="previews/3.png" width="400" alt="Preview 3" />
+  <img src="previews/4.png" width="400" alt="Preview 4" />
+  <img src="previews/5.png" width="400" alt="Preview 5" />
+</div>
+
+---
+
 ## ✨ Features
 
 - **📖 Surah Exploration**: Browse all 114 Surahs with detailed information including Arabic names, transliteration, and English meanings.
