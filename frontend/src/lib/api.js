@@ -1,14 +1,27 @@
 const BASE = process.env.NEXT_PUBLIC_API_URL || "https://al-quran-task.netlify.app/api";
 
 async function request(path) {
-  const res = await fetch(`${BASE}${path}`, { cache: "no-store" });
+  const url = `${BASE}${path}`;
+  try {
+    const res = await fetch(url, { cache: "no-store" });
 
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({}));
-    throw new Error(body?.error?.message || `Request failed (${res.status})`);
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      throw new Error(body?.error?.message || `API Error: ${res.status} ${res.statusText}`);
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(`❌ Quran API Fetch Failed:
+      URL: ${url}
+      Error: ${error.message}
+    `);
+
+    if (error.message === "Failed to fetch") {
+      throw new Error("Could not reach the backend server. Please ensure it is running on port 5000.");
+    }
+    throw error;
   }
-
-  return res.json();
 }
 
 export async function getAllSurahs() {
