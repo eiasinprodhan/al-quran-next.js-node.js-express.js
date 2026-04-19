@@ -4,18 +4,6 @@ A modern, high-performance Quran application built with **Next.js 14**, **Node.j
 
 ---
 
-## 📸 Screenshots
-
-<div align="center">
-  <img src="previews/1.png" width="400" alt="Preview 1" />
-  <img src="previews/2.png" width="400" alt="Preview 2" />
-  <img src="previews/3.png" width="400" alt="Preview 3" />
-  <img src="previews/4.png" width="400" alt="Preview 4" />
-  <img src="previews/5.png" width="400" alt="Preview 5" />
-</div>
-
----
-
 ## ✨ Features
 
 - **📖 Surah Exploration**: Browse all 114 Surahs with detailed information including Arabic names, transliteration, and English meanings.
@@ -111,3 +99,15 @@ For the backend, it is recommended to use **[Render.com](https://render.com)** o
 - **Frontend**: [Next.js](https://nextjs.org/), [React](https://reactjs.org/), [Tailwind CSS](https://tailwindcss.com/)
 - **Backend**: [Express.js](https://expressjs.com/), [Better-SQLite3](https://github.com/WiseLibs/better-sqlite3)
 - **Icons**: [Lucide React](https://lucide.dev/)
+
+---
+
+## 📸 Screenshots
+
+<div align="center">
+  <img src="previews/1.png" alt="Preview 1" />
+  <img src="previews/2.png" alt="Preview 2" />
+  <img src="previews/3.png" alt="Preview 3" />
+  <img src="previews/4.png" alt="Preview 4" />
+  <img src="previews/5.png" alt="Preview 5" />
+</div>
