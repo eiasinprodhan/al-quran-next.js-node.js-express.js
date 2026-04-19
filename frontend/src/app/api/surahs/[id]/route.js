@@ -44,7 +44,7 @@ export async function GET(request, { params }) {
   } catch (error) {
     console.error('API Error (surah id):', error);
     return NextResponse.json(
-      { success: false, error: error.message, stack: error.stack },
+      { success: false, error: error.message },
       { status: 500 }
     );
   }
