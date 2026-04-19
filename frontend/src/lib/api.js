@@ -1,4 +1,4 @@
-const BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const BASE = process.env.NEXT_PUBLIC_API_URL || "https://al-quran-task.netlify.app/api";
 
 async function request(path) {
   const res = await fetch(`${BASE}${path}`, { cache: "no-store" });

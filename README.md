@@ -1,5 +1,7 @@
 # 📖 Al-Quran Full-Stack Application
 
+**Live Demo: [al-quran-task.netlify.app](https://al-quran-task.netlify.app/)**
+
 A modern, high-performance Quran application built with **Next.js 14**, **Node.js/Express**, and **SQLite**. This project provides a clean interface to read the Holy Quran, search for ayahs, and learn about different Surahs.
 
 ---
@@ -52,7 +54,7 @@ npm run seed  # Loads the Quran data into quran.db
 cd backend
 npm run dev
 ```
-The API will be available at `http://localhost:5000`.
+The API will be available at `http://localhost:5000` (Local Development).
 
 ### 3. Run the Frontend
 ```bash
@@ -60,7 +62,7 @@ cd frontend
 npm install
 npm run dev
 ```
-The application will be available at `http://localhost:3000`.
+The application will be available at `http://localhost:3000` (Local Development).
 
 ---
 

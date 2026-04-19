@@ -3,6 +3,7 @@ require("dotenv").config();
 
 const allowedOrigins = [
   process.env.FRONTEND_URL || "http://localhost:3000",
+  "https://al-quran-task.netlify.app",
   "http://localhost:3000",
   "http://localhost:3001",
 ];

@@ -25,10 +25,7 @@ export default function HomePage() {
       <div className="max-w-lg mx-auto px-4 py-24 text-center">
         <p className="text-red-500 font-medium mb-2">{error}</p>
         <p className="text-stone-400 text-sm mb-4">
-          Make sure the backend is running on{" "}
-          <code className="bg-stone-100 px-1 rounded">
-            http://localhost:5000
-          </code>
+          Could not connect to the Quran API. Please try again later.
         </p>
         <button
           onClick={() => window.location.reload()}
