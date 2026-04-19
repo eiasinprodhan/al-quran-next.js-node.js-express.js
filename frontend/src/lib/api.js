@@ -7,7 +7,10 @@ async function request(path) {
 
     if (!res.ok) {
       const body = await res.json().catch(() => ({}));
-      throw new Error(body?.error?.message || `API Error: ${res.status} ${res.statusText}`);
+      console.error('API Error Body:', body);
+      // Surface the specific error string or stack track if available
+      const errMsg = body.error || body.message || `API Error: ${res.status} ${res.statusText}`;
+      throw new Error(errMsg);
     }
 
     return await res.json();
