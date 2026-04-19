@@ -47,9 +47,11 @@ app.use("/api/search", searchRoutes);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`\n🚀  Backend running → http://localhost:${PORT}`);
-  console.log(`   Health check  → http://localhost:${PORT}/api/health\n`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`\n🚀  Backend running → http://localhost:${PORT}`);
+    console.log(`   Health check  → http://localhost:${PORT}/api/health\n`);
+  });
+}
 
 module.exports = app;

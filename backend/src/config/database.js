@@ -2,16 +2,23 @@ const Database = require("better-sqlite3");
 const path = require("path");
 require("dotenv").config();
 
-const DB_PATH = path.resolve(process.env.DB_PATH || "./quran.db");
+const isNetlify = !!process.env.NETLIFY || !!process.env.LAMBDA_TASK_ROOT;
+const DB_PATH = path.resolve(
+  process.env.DB_PATH || path.join(process.cwd(), "quran.db")
+);
 
 let db = null;
 
 function getDatabase() {
   if (!db) {
-    db = new Database(DB_PATH);
-    db.pragma("journal_mode = WAL");
+    db = new Database(DB_PATH, { readonly: isNetlify });
+    if (!isNetlify) {
+      db.pragma("journal_mode = WAL");
+    }
     db.pragma("foreign_keys = ON");
-    initializeTables();
+    if (!isNetlify) {
+      initializeTables();
+    }
   }
   return db;
 }
