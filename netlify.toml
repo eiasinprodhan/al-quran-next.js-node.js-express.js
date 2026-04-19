@@ -3,5 +3,11 @@
   command = "npm run build"
   publish = ".next"
 
+[functions]
+  # Include the SQLite database in the function bundle
+  included_files = ["quran.db"]
+  # better-sqlite3 uses native bindings which must be compiled for Linux
+  external_node_modules = ["better-sqlite3"]
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
