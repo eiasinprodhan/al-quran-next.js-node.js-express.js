@@ -63,7 +63,7 @@ export async function GET(request) {
   } catch (error) {
     console.error('API Error (search):', error);
     return NextResponse.json(
-      { success: false, error: error.message },
+      { success: false, error: error.message, stack: error.stack },
       { status: 500 }
     );
   }

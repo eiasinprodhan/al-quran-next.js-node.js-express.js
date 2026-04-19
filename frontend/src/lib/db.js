@@ -1,26 +1,56 @@
 import Database from 'better-sqlite3';
 import path from 'path';
+import fs from 'fs';
 
 const isNetlify = !!process.env.NETLIFY || !!process.env.LAMBDA_TASK_ROOT;
-const DB_PATH = path.resolve(
-  process.env.DB_PATH || path.join(process.cwd(), 'quran.db')
-);
 
 let db = null;
 
+function findDatabasePath() {
+  const possiblePaths = [
+    process.env.DB_PATH,
+    path.join(process.cwd(), 'quran.db'),
+    path.join(process.cwd(), 'frontend', 'quran.db'),
+    path.join(process.cwd(), 'public', 'quran.db'),
+    path.join(process.cwd(), '.next', 'server', 'quran.db'),
+    // Netlify specific potential locations
+    path.join('/var/task', 'quran.db'),
+    path.join('/var/task/frontend', 'quran.db'),
+  ].filter(p => p);
+
+  console.log('Searching for quran.db in:', possiblePaths);
+
+  for (const p of possiblePaths) {
+    const resolvedPath = path.resolve(p);
+    if (fs.existsSync(resolvedPath)) {
+      console.log('Found quran.db at:', resolvedPath);
+      return resolvedPath;
+    }
+  }
+
+  throw new Error(`quran.db not found. Searched in: ${possiblePaths.join(', ')}. CWD is: ${process.cwd()}`);
+}
+
 export function getDatabase() {
   if (!db) {
-    // In Netlify serverless functions, the file system is read-only
-    db = new Database(DB_PATH, { readonly: isNetlify });
+    const DB_PATH = findDatabasePath();
     
-    if (!isNetlify) {
-      db.pragma('journal_mode = WAL');
-    }
-    db.pragma('foreign_keys = ON');
-    
-    // Standard initialization if not in production
-    if (!isNetlify) {
-      initializeTables(db);
+    try {
+      // In Netlify serverless functions, the file system is read-only
+      db = new Database(DB_PATH, { readonly: isNetlify });
+      
+      if (!isNetlify) {
+        db.pragma('journal_mode = WAL');
+      }
+      db.pragma('foreign_keys = ON');
+      
+      // Standard initialization if not in production
+      if (!isNetlify) {
+        initializeTables(db);
+      }
+    } catch (error) {
+      console.error('Failed to initialize database:', error);
+      throw new Error(`SQLite Error: ${error.message} (Path: ${DB_PATH})`);
     }
   }
   return db;

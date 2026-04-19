@@ -17,7 +17,7 @@ export async function GET() {
   } catch (error) {
     console.error('API Error (surah):', error);
     return NextResponse.json(
-      { success: false, error: error.message },
+      { success: false, error: error.message, stack: error.stack },
       { status: 500 }
     );
   }
